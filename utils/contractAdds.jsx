@@ -1,8 +1,8 @@
 "use client"
 
 export const contractAdds = {
-    burner: "0x6A8346ba2a89578824Eff63789D5C63fc38628F3",
+    burner: "0xbFFa5d24E38422934cA70eF5dc96d030E4B70607",
     simple: "0x628a73c527f1c191F27C4d466238381109B6eAFC",
-    caller: "0x6508b25F3B686Bb0C847956cD89c6D59D72b8595",
+    caller: "0x72d79a66dc03dFB4623bc49F3Bfb836165277cDf",
     simplyNFT: "0x1a90102b680807CE176bE575479e4b824fD1F392"
 }

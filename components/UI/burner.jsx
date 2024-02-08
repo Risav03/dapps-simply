@@ -4,10 +4,10 @@ import Navbar from "./Navbar"
 import { contractAdds } from "@/utils/contractAdds"
 import burnerabi from "@/utils/abis/burnerabi"
 import { useEffect, useState } from "react"
-import callerabi from "@/utils/abis/callerabi"
+
 import {ethers} from "ethers"
 import {useAccount} from "wagmi"
-import simplyNFTabi from "@/utils/abis/simplyNFTabi"
+
 import Swal from "sweetalert2";
 import { InfinitySpin } from "react-loader-spinner"
 
@@ -19,7 +19,6 @@ export default function Burner(){
     const{address, isConnected} = useAccount();
 
     const[displayNFT, setDisplayNFT] = useState([]);
-    const[loading, setLoading] = useState(false);
     const[loadingNFTs, setLoadingNFTs] = useState(false);
 
     async function burningSetup(){
@@ -80,14 +79,14 @@ export default function Burner(){
         <div className="sm:p-12 p-4 overflow-hidden">
             
             <Navbar/>
-            <h1 className="text-6xl font-bold">SIMPLY Burner</h1>
+            <h1 className="text-6xl mt-5 font-bold">SIMPLY Burner</h1>
             <p className="mt-4 text-xl">Burn your SIMPLY NFT & earn $SIMPLE based on its traits!</p>
             {/* <div className="w-[400px] h-[400px] bg-gradient-to-br from-orange-500 to-yellow-400 blur-[200px] absolute z-[-1] top-[-80px] left-[-230px]"></div>
             <div className="w-[500px] h-[400px] bg-gradient-to-br from-orange-600 to-red-400 blur-[250px] absolute z-[-1] top-[-30px] right-[-130px]"></div>
             <div className="w-[600px] h-[600px] bg-gradient-to-br from-yellow-300 to-red-400 blur-[250px] absolute z-[-1] bottom-[-100px] right-[-10px]"></div> */}
 
 
-            <div className="w-[95%] sm:h-[33rem] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 bg-white/30 p-5 rounded-2xl">
+            <div className="w-[95%] sm:h-[33rem] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 no-scrollbar bg-white/30 p-5 rounded-2xl">
                 <h1 className="text-xl mb-5 font-bold">Your NFTs:</h1>
                 { loadingNFTs && 
                 <div className="flex flex-col h-[80%] items-center justify-center">

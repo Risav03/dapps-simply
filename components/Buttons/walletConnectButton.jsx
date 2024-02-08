@@ -38,14 +38,14 @@ export const WalletConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button" className='bg-purple-500 font-bold hover:bg-purple-400 border-purple-300 border-2 px-4 py-2 hover:-translate-y-1 rounded-2xl duration-300'>
+                  <button onClick={openConnectModal} type="button" className='bg-purple-500 font-bold text-white hover:bg-purple-400 border-purple-300 border-2 px-4 py-2 hover:-translate-y-1 rounded-2xl duration-300'>
                     Connect Wallet
                   </button>
                 );
               }
               if (chain.unsupported) {
                 return (
-                  <button onClick={openChainModal} type="button" className='bg-red-500 border-2 border-black text-black rounded-full px-3 py-1 shadow-xl transform transition duration-300 ease-in-out shadow-black/30 hover:-translate-y-1 hover:bg-red-300'>
+                  <button onClick={openChainModal} type="button" className='bg-red-500 font-bold hover:bg-red-400 text-white border-red-300 border-2 px-4 py-2 hover:-translate-y-1 rounded-2xl duration-300'>
                     Wrong network
                   </button>
                 );
