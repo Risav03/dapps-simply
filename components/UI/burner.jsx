@@ -87,7 +87,7 @@ export default function Burner(){
             <div className="w-[600px] h-[600px] bg-gradient-to-br from-yellow-300 to-red-400 blur-[250px] absolute z-[-1] bottom-[-100px] right-[-10px]"></div> */}
 
 
-            <div className="w-[95%] h-[33rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 bg-white/30 p-5 rounded-2xl">
+            <div className="w-[95%] sm:h-[33rem] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 bg-white/30 p-5 rounded-2xl">
                 <h1 className="text-xl mb-5 font-bold">Your NFTs:</h1>
                 { loadingNFTs && 
                 <div className="flex flex-col h-[80%] items-center justify-center">
