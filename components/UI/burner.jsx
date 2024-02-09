@@ -79,19 +79,19 @@ export default function Burner(){
         <div className="sm:p-12 p-4 overflow-hidden">
             
             <Navbar/>
-            <h1 className="text-6xl mt-5 font-bold">SIMPLY Burner</h1>
+            <h1 className="text-6xl mt-5 font-bold">SIMPLY <span className="bg-gradient-to-b from-orange-600 to-orange-400 text-transparent bg-clip-text">Burner</span></h1>
             <p className="mt-4 text-xl">Burn your SIMPLY NFT & earn $SIMPLE based on its traits!</p>
             {/* <div className="w-[400px] h-[400px] bg-gradient-to-br from-orange-500 to-yellow-400 blur-[200px] absolute z-[-1] top-[-80px] left-[-230px]"></div>
             <div className="w-[500px] h-[400px] bg-gradient-to-br from-orange-600 to-red-400 blur-[250px] absolute z-[-1] top-[-30px] right-[-130px]"></div>
             <div className="w-[600px] h-[600px] bg-gradient-to-br from-yellow-300 to-red-400 blur-[250px] absolute z-[-1] bottom-[-100px] right-[-10px]"></div> */}
 
 
-            <div className="w-[95%] sm:h-[33rem] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 no-scrollbar bg-white/30 p-5 rounded-2xl">
-                <h1 className="text-xl mb-5 font-bold">Your NFTs:</h1>
+            <div className="w-[95%] sm:h-[34rem] min-[1600px]:h-[36rem] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 no-scrollbar bg-white/30 p-5 rounded-2xl">
+                <h1 className="text-xl mb-5 font-bold ml-3">Your NFTs:</h1>
                 { loadingNFTs && 
                 <div className="flex flex-col h-[80%] items-center justify-center">
                      <InfinitySpin visible={true} width="200" color="#fc6100" ariaLabel="infinity-spin-loading" />
-                     <h1 className="text-orange-500 animate-pulse">Loading...</h1>
+                     <h1 className="text-orange-500 animate-pulse font-bold">Fetching NFTs...</h1>
                      </div>
                         }
                 <div className="flex flex-wrap gap-5 mx-auto justify-center">
