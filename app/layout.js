@@ -1,7 +1,9 @@
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Rainbow from "@/utils/rainbow/rainbowKit";
+import pixelfont from "next/font/local"
 
+const font = pixelfont({ src: "../assets/font.ttf" })
 const inter = Inter({ subsets: ["latin"] });
 const mont = Montserrat({subsets:["latin"]});
 
@@ -13,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={mont.className}>
+      <body className={font.className}>
         <Rainbow>
           {children}
         </Rainbow>
