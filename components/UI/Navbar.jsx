@@ -66,7 +66,7 @@ export default function Navbar(){
         <div className="flex flex-row sm:items-end sm:justify-end sm:mt-2 mt-5 mb-5 items-center justify-center relative">
             <div className="flex items-center w-[14rem] text-center justify-center -translate-y-3 -translate-x-2">
                 <Image width={1920} height={1080} src={tokenBox} className="absolute w-[14rem]"/>
-                <h2 className="translate-y-2 text-center flex items-center font-bold text-white">{balance} <span ><Image src={token} width={1920} height={1080} className="w-[3.2rem] translate-x-4 -rotate-12" /></span></h2>
+                <h2 className="translate-y-2 text-center text-xl flex items-center font-bold text-white">{balance} <span ><Image src={token} width={1920} height={1080} className="w-[3.2rem] translate-x-4 -rotate-12" /></span></h2>
             </div>
             <WalletConnectButton/>
         </div>
