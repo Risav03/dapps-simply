@@ -3,7 +3,7 @@ import "./globals.css";
 import Rainbow from "@/utils/rainbow/rainbowKit";
 import pixelfont from "next/font/local"
 
-const font = pixelfont({ src: "../assets/font.ttf" })
+const font = pixelfont({ src: "../assets/Minecraft.ttf" })
 const inter = Inter({ subsets: ["latin"] });
 const mont = Montserrat({subsets:["latin"]});
 
