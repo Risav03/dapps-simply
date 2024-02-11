@@ -4,7 +4,7 @@ import Navbar from "./Navbar"
 import { contractAdds } from "@/utils/contractAdds"
 import burnerabi from "@/utils/abis/burnerabi"
 import { useEffect, useState } from "react"
-
+import token from "@/assets/coin.png"
 import {ethers} from "ethers"
 import {useAccount} from "wagmi"
 
@@ -80,7 +80,7 @@ export default function Burner(){
             
             <Navbar/>
             <h1 className="text-6xl mt-5 font-bold">SIMPLY <span className="bg-gradient-to-b from-orange-600 to-orange-400 text-transparent bg-clip-text">Burner</span></h1>
-            <p className="mt-4 text-xl">Burn your SIMPLY NFT & earn $SIMPLE based on its traits!</p>
+            <p className="mt-4 text-xl sm:flex items-center">Burn your SIMPLY NFT & earn <span className="hidden sm:flex"><Image src={token} width={1920} height={1080} className="w-[3.5rem] mx-3 -rotate-12" /></span> <span className="sm:hidden">$SIMPLE</span> based on its traits!</p>
             {/* <div className="w-[400px] h-[400px] bg-gradient-to-br from-orange-500 to-yellow-400 blur-[200px] absolute z-[-1] top-[-80px] left-[-230px]"></div>
             <div className="w-[500px] h-[400px] bg-gradient-to-br from-orange-600 to-red-400 blur-[250px] absolute z-[-1] top-[-30px] right-[-130px]"></div>
             <div className="w-[600px] h-[600px] bg-gradient-to-br from-yellow-300 to-red-400 blur-[250px] absolute z-[-1] bottom-[-100px] right-[-10px]"></div> */}
