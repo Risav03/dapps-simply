@@ -90,6 +90,7 @@ export default function Burner(){
                     console.log(err);
                     setLoadingNFTs(false);
                     j--;
+                    dataProvider(j, contract);
                 }
                 
 
