@@ -15,7 +15,7 @@ import tokenBox from "@/assets/tokenBox.png"
 export default function Navbar(){
 
     const [balance, setBalance] = useState(0);
-    const {address} = useAccount();
+    const {address, isConnected} = useAccount();
 
     async function setTokenContract() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -60,7 +60,7 @@ export default function Navbar(){
 
     useEffect(()=>{
         fetchTokenBalance();
-    },[])
+    },[isConnected])
 
     return(
         <div className="flex flex-row sm:items-end sm:justify-end sm:mt-2 mt-5 mb-5 items-center justify-center relative">

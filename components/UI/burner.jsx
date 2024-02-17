@@ -109,7 +109,7 @@ export default function Burner(){
         console.log(isConnected);
         if(isConnected)
         fetchNFTs();
-    },[])
+    },[isConnected])
 
     return(
         <div className="sm:p-12 p-4 overflow-hidden">
