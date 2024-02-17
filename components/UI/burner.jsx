@@ -21,6 +21,8 @@ export default function Burner(){
     const[displayNFT, setDisplayNFT] = useState([]);
     const[loadingNFTs, setLoadingNFTs] = useState(false);
 
+    var counter = 0;
+
     async function burningSetup(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -35,46 +37,64 @@ export default function Burner(){
         }
     }
 
+    async function dataProvider(index, contract){
+        try{
+            const response = await contract.fetchTokenURI(index);
+
+            for(let i = 0; i< response.length; i++){
+                const uri = response[i][0];
+                const tokenId = Number(response[i][1]);
+    
+                const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+                const meta = await fetch(metadata);
+                const json = await meta.json();
+                const name = json["name"];
+                const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+    
+                setDisplayNFT(oldArray => [...oldArray, {tokenId, name, img, uri}]);
+    
+                counter++;
+                
+            }
+        }
+        catch(err){
+            console.log(err);
+            setLoadingNFTs(false);
+        }
+
+
+    }
+
     async function fetchNFTs(){
         try{
         
             setLoadingNFTs(true);
             const contract = await burningSetup();
-            // const response = await contract.fetchTokenURI();
+
+            const balance = await contract.returnBalance();
 
 
-            console.log("HELLO");
-            const array = [];
+            for(let j  = 0; j<40; j++){
+                try{
 
-            for(let i = 0; i< 73; i++){
-              
-                const burnt = await contract.burntTokens(i);
-                console.log(burnt);
-                array.push(Number(burnt));
+                    if(counter == balance){
+                        setLoadingNFTs(false);
+                        break;
+                    }
+
+                    else{
+                        dataProvider(j, contract);
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                    setLoadingNFTs(false);
+                    j--;
+                }
+                
+
             }
 
-            console.log("BTYE");
-
-            console.log("BROOOO",array);
-
-            // const arr = []
-
-            // for(let i = 0; i< response.length; i++){
-            //     const uri = response[i][0];
-            //     const tokenId = Number(response[i][1]);
-
-            //     const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-            //     const meta = await fetch(metadata);
-            //     const json = await meta.json();
-            //     const name = json["name"];
-            //     const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-
-            //     arr.push({tokenId, name, img, uri});
-            // }
-            // console.log(arr);
-
-            setDisplayNFT(arr);
-            setLoadingNFTs(false);
         }
         catch(err){
             console.log(err);
