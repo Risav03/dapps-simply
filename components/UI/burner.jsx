@@ -40,23 +40,38 @@ export default function Burner(){
         
             setLoadingNFTs(true);
             const contract = await burningSetup();
-            const response = await contract.fetchTokenURI();
+            // const response = await contract.fetchTokenURI();
 
-            const arr = []
 
-            for(let i = 0; i< response.length; i++){
-                const uri = response[i][0];
-                const tokenId = Number(response[i][1]);
+            console.log("HELLO");
+            const array = [];
 
-                const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-                const meta = await fetch(metadata);
-                const json = await meta.json();
-                const name = json["name"];
-                const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-
-                arr.push({tokenId, name, img, uri});
+            for(let i = 0; i< 73; i++){
+              
+                const burnt = await contract.burntTokens(i);
+                console.log(burnt);
+                array.push(Number(burnt));
             }
-            console.log(arr);
+
+            console.log("BTYE");
+
+            console.log("BROOOO",array);
+
+            // const arr = []
+
+            // for(let i = 0; i< response.length; i++){
+            //     const uri = response[i][0];
+            //     const tokenId = Number(response[i][1]);
+
+            //     const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+            //     const meta = await fetch(metadata);
+            //     const json = await meta.json();
+            //     const name = json["name"];
+            //     const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+
+            //     arr.push({tokenId, name, img, uri});
+            // }
+            // console.log(arr);
 
             setDisplayNFT(arr);
             setLoadingNFTs(false);
@@ -64,7 +79,7 @@ export default function Burner(){
         catch(err){
             console.log(err);
             setLoadingNFTs(false);
-            fetchNFTs();
+            // fetchNFTs();
             
         }
     }

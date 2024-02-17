@@ -22,7 +22,7 @@ export default function Navbar(){
         const signer = provider.getSigner();
         try {
           const contract = new ethers.Contract(contractAdds.simple, tokenabi, signer);
-          console.log(contract);
+          // console.log(contract);
           return contract;
         }
         catch (err) {
