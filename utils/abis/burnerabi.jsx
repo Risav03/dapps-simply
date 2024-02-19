@@ -1,28 +1,5 @@
 export default [
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "additional",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "burnToEarn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -47,21 +24,24 @@ export default [
 		"type": "event"
 	},
 	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
+				"internalType": "uint256[]",
+				"name": "tokenId",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "additional",
+				"type": "uint256"
+			},
+			{
 				"internalType": "address",
-				"name": "contractAddress",
+				"name": "owner",
 				"type": "address"
 			}
 		],
-		"name": "setBurnToEarnCaller",
+		"name": "batchBurn",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -70,24 +50,21 @@ export default [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "newAmount",
+				"name": "tokenId",
 				"type": "uint256"
-			}
-		],
-		"name": "setRewardAmount",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+			},
+			{
+				"internalType": "uint256",
+				"name": "additional",
+				"type": "uint256"
+			},
 			{
 				"internalType": "address",
-				"name": "newOwner",
+				"name": "owner",
 				"type": "address"
 			}
 		],
-		"name": "transferOwnership",
+		"name": "burnToEarn",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -138,6 +115,13 @@ export default [
 	},
 	{
 		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "returnBalance",
 		"outputs": [
 			{
@@ -160,6 +144,32 @@ export default [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "contractAddress",
+				"type": "address"
+			}
+		],
+		"name": "setBurnToEarnCaller",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "setRewardAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -186,6 +196,19 @@ export default [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
