@@ -150,8 +150,7 @@ export default function Burner(){
         }
         catch(err){
             console.log(err);
-
-            setLoadingNFTs(false);
+            dataProvider(index, contract)
         }
 
 
@@ -1919,7 +1918,6 @@ export default function Burner(){
                     console.log(err);
                     setLoadingNFTs(false);
                     j--;
-                    await dataProvider(j, contract);
                 }
                 
 
