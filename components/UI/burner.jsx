@@ -1912,14 +1912,14 @@ export default function Burner(){
                     }
 
                     else{
-                        dataProvider(j, contract);
+                        await dataProvider(j, contract);
                     }
                 }
                 catch(err){
                     console.log(err);
                     setLoadingNFTs(false);
                     j--;
-                    dataProvider(j, contract);
+                    await dataProvider(j, contract);
                 }
                 
 
