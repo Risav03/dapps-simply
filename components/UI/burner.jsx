@@ -127,21 +127,28 @@ export default function Burner(){
             
                 for(let i = 0; i< response.length; i++){
                     
-                    const uri = response[i][0];
-                    const tokenId = Number(response[i][1]);
-                    
-                    const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-                    const meta = await fetch(metadata);
-                    const json = await meta.json();
-                    const name = json["name"];
-                    const reward = await checkTraits(json["attributes"]);
-                    const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-        
-                    setDisplayNFT(oldArray => [...oldArray, {tokenId, name, img, uri, reward}]);
-        
-                    counter++;
-                    if(balance == counter){
-                        break;
+                    try{
+                        const uri = response[i][0];
+                        const tokenId = Number(response[i][1]);
+                        
+                        const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+                        const meta = await fetch(metadata);
+                        const json = await meta.json();
+                        const name = json["name"];
+                        const reward = await checkTraits(json["attributes"]);
+                        const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+            
+                        setDisplayNFT(oldArray => [...oldArray, {tokenId, name, img, uri, reward}]);
+            
+                        counter++;
+                        if(balance == counter){
+                            break;
+                        }
+
+                    }
+                    catch(err){
+                        console.log(err);
+                        i--;
                     }
                     
                 }
@@ -150,7 +157,8 @@ export default function Burner(){
         }
         catch(err){
             console.log(err);
-            dataProvider(index, contract)
+            dataProvider(index, contract);
+            setLoadingNFTs(false);
         }
 
 
