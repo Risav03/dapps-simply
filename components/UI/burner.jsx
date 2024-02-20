@@ -123,8 +123,8 @@ export default function Burner(){
             const response = await contract.fetchTokenURI(index);
             const balance = await contract.returnBalance();
 
+            const arr = []
 
-            
                 for(let i = 0; i< response.length; i++){
                     
                     try{
@@ -138,13 +138,16 @@ export default function Burner(){
                         const reward = await checkTraits(json["attributes"]);
                         const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
             
-                        setDisplayNFT(oldArray => [...oldArray, {tokenId, name, img, uri, reward}]);
+                        arr.push({name, reward, img, tokenId});
             
                         counter++;
                         if(balance == counter){
                             break;
                         }
 
+                        console.log(counter);
+
+                        return arr;
                     }
                     catch(err){
                         console.log(err);
@@ -1906,21 +1909,24 @@ export default function Burner(){
         
             setLoadingNFTs(true);
             const contract = await burningSetup();
-
             const balance = await contract.returnBalance();
 
+            const dispArr = [];
 
             for(let j  = 0; j<40; j++){
                 try{
-
+                    console.log(counter);
                     if(counter == balance){
                         setLoadingNFTs(false);
                         break;
                     }
 
                     else{
-                        const txn = await dataProvider(j, contract);
-                        txn.wait();
+                        const arr = await dataProvider(j, contract);
+
+                        for(let i = 0; i<arr.length; i++){
+                            dispArr.push(arr[i]);
+                        }
                     }
                 }
                 catch(err){
@@ -1931,12 +1937,12 @@ export default function Burner(){
 
             }
 
+            setDisplayNFT(dispArr)
+
         }
         catch(err){
             console.log(err);
             setLoadingNFTs(false);
-            fetchNFTs();
-            
         }
     }
 
