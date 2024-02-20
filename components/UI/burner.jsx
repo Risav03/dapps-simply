@@ -1911,12 +1911,12 @@ export default function Burner(){
                     }
 
                     else{
-                        await dataProvider(j, contract);
+                        const txn = await dataProvider(j, contract);
+                        txn.wait();
                     }
                 }
                 catch(err){
                     console.log(err);
-                    setLoadingNFTs(false);
                     j--;
                 }
                 
@@ -1962,7 +1962,7 @@ export default function Burner(){
     }
 
     useEffect(()=>{
-        console.log(isConnected);
+
         if(isConnected)
         fetchNFTs();
     },[isConnected])
