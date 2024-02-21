@@ -5,5 +5,5 @@ export const contractAdds = {
     simple: "0xeFc5268C100530F50ff45Cd5C8c2e049254E8778",
     caller: "0x4dbA0e8829519e69113bD0F047d9840c3243F973",
     simplyNFT: "0x1a90102b680807ce176be575479e4b824fd1f392",
-    raffle: "0xe3B1ccCA0eA2B8461B2976618Aa667d6254B5609"
+    raffle: "0x387df947fB66EeF455e738D1D6650eCcdb302d29"
 }

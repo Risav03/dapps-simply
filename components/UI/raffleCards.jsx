@@ -172,6 +172,7 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             console.log(err);
+            setTimeout(await fetchRaffle(), 3000);
         }
     }
 
