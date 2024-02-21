@@ -3,6 +3,7 @@
 import {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import RaffleCards from "./raffleCards";
+import PastWinners from "./pastwinners";
 
 export default function Raffle(){
 
@@ -37,6 +38,21 @@ export default function Raffle(){
                     <RaffleCards number={8}/>
                 </div>}
 
+                <h1 className="font-bold text-3xl mt-10">Past Raffles</h1>
+
+                { type == "Simple" && <div className="flex flex-row flex-wrap justify-center gap-5 ">
+                    <PastWinners number={1}/>
+                    <PastWinners number={2}/>
+                    <PastWinners number={3}/>
+                    <PastWinners number={4}/>
+                </div>}
+
+                { type == "Matic" && <div className="flex flex-row flex-wrap justify-center gap-5 ">
+                    <PastWinners number={5}/>
+                    <PastWinners number={6}/>
+                    <PastWinners number={7}/>
+                    <PastWinners number={8}/>
+                </div>}
 
                 <div>
 
