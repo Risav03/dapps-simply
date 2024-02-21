@@ -55,7 +55,7 @@ export default function Navbar(){
         }
         catch(err){
             console.log(err);
-            // setTimeout(fetchTokenBalance(), 1000);
+            setTimeout(fetchTokenBalance, 1000);
         }
     }
 
