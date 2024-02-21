@@ -8,7 +8,7 @@ import token from "@/assets/coin.png"
 import {ethers} from "ethers"
 import {useAccount} from "wagmi"
 import simplyNFTabi from "@/utils/abis/simplyNFTabi"
-
+import axios from "axios"
 import Swal from "sweetalert2";
 import { InfinitySpin } from "react-loader-spinner"
 import callerabi from "@/utils/abis/callerabi"
@@ -123,35 +123,38 @@ export default function Burner(){
             const response = await contract.fetchTokenURI(index);
             const balance = await contract.returnBalance();
 
-            const arr = []
+            console.log(response);
 
                 for(let i = 0; i< response.length; i++){
                     
                     try{
                         const uri = response[i][0];
                         const tokenId = Number(response[i][1]);
-                        
+                        // console.log(uri);
                         const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-                        const meta = await fetch(metadata);
-                        const json = await meta.json();
+                        // console.log(metadata)
+                        const meta = await axios.get(metadata);
+
+                        console.log(meta.data)
+                        const json = await meta.data
                         const name = json["name"];
                         const reward = await checkTraits(json["attributes"]);
                         const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-            
-                        arr.push({name, reward, img, tokenId});
-            
+                        
+                        setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
+
                         counter++;
                         if(balance == counter){
                             break;
                         }
 
                         console.log(counter);
-
-                        return arr;
                     }
                     catch(err){
                         console.log(err);
-                        i--;
+                        // i--;
+                        break;
+
                     }
                     
                 }
@@ -1911,7 +1914,6 @@ export default function Burner(){
             const contract = await burningSetup();
             const balance = await contract.returnBalance();
 
-            const dispArr = [];
 
             for(let j  = 0; j<40; j++){
                 try{
@@ -1922,22 +1924,18 @@ export default function Burner(){
                     }
 
                     else{
-                        const arr = await dataProvider(j, contract);
-
-                        for(let i = 0; i<arr.length; i++){
-                            dispArr.push(arr[i]);
-                        }
+                        await dataProvider(j, contract);
                     }
                 }
                 catch(err){
                     console.log(err);
-                    j--;
+                    // j--;
+                    break;
                 }
                 
 
             }
 
-            setDisplayNFT(dispArr)
 
         }
         catch(err){
