@@ -55,6 +55,7 @@ export default function Navbar(){
         }
         catch(err){
             console.log(err);
+            fetchTokenBalance();
         }
     }
 

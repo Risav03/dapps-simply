@@ -1926,6 +1926,7 @@ export default function Burner(){
         catch(err){
             // console.log(err);
             setLoadingNFTs(false);
+            fetchNFTsSecOne();
         }
     }
 
@@ -1974,6 +1975,7 @@ export default function Burner(){
         catch(err){
             // console.log(err);
             setLoadingNFTs(false);
+            fetchNFTsSecTwo();
         }
     }
 
