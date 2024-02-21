@@ -89,10 +89,14 @@ export default function RaffleFetcher({number}){
     }
 
     async function changeAmount(val){
-        if(amount>=1)
-        setAmount(amount+val);
-        if(amount == 0 && val == 1)
-        setAmount(1);
+        if(amount>=1 && amount+val+ticketsSold<=limit && amount+val+holding<=limitPerWallet){
+            setAmount(amount+val);
+
+        }
+        if(amount == 0 && val == 1){
+            setAmount(1);
+
+        }
     }
     
     async function fetchRaffle(){
