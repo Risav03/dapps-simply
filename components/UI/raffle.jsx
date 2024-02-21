@@ -14,9 +14,9 @@ export default function Raffle(){
             <Navbar/>
             <h1 className="text-5xl font-bold">Simple <span className="bg-gradient-to-b from-blue-400 to-blue-600 text-transparent bg-clip-text">Raffle dApp</span></h1>
 
-            <div className="mx-auto grid grid-flow-col grid-cols-2 p-1">
-                <button onClick={()=>{setType("Simple")}} className={`${ type == "Simple" ? "bg-white shadow-lg shadow-white/50 text-black": "bg-black text-white"} p-2  rounded-l-xl font-bold`}>$SIMPLE</button>
-                <button onClick={()=>{setType("Matic")}} className={`${ type == "Matic" ? "bg-purple-500 shadow-lg shadow-purple-400/50 text-white": "bg-black text-purple-500"}  rounded-r-xl p-2 font-bold`}>$MATIC</button>
+            <div className="mx-auto w-[20rem]  grid grid-flow-col grid-cols-2 px-1 py-3">
+                <button onClick={()=>{setType("Simple")}} className={`${ type == "Simple" ? "bg-white shadow-lg shadow-white/50 text-black": "bg-black text-white"} px-2 py-3  rounded-l-xl font-bold`}>$SIMPLE</button>
+                <button onClick={()=>{setType("Matic")}} className={`${ type == "Matic" ? "bg-purple-500 shadow-lg shadow-purple-400/50 text-white": "bg-black text-purple-500"}  rounded-r-xl px-2 py-3  font-bold`}>$MATIC</button>
             </div>
 
 
