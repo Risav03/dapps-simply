@@ -1881,7 +1881,7 @@ export default function Burner(){
     }
 
 
-    async function fetchNFTsQuarterOne(){
+    async function fetchNFTsSecOne(){
         try{
         
             setLoadingNFTs(true);
@@ -1889,7 +1889,7 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 0; j<10; j++){
+            for(let j  = 0; j<20; j++){
 
                 try{
                     if(counter < balance){
@@ -1929,7 +1929,7 @@ export default function Burner(){
         }
     }
 
-    async function fetchNFTsQuarterTwo(){
+    async function fetchNFTsSecTwo(){
         try{
         
             setLoadingNFTs(true);
@@ -1937,7 +1937,7 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 10; j<20; j++){
+            for(let j  = 20; j<=40; j++){
 
                 try{
                     if(counter < balance){
@@ -1977,101 +1977,7 @@ export default function Burner(){
         }
     }
 
-    async function fetchNFTsQuarterThree(){
-        try{
-        
-            setLoadingNFTs(true);
-            const contract = await burningSetup();
-            const balance = await contract.returnBalance();
 
-
-            for(let j  = 20; j<30; j++){
-
-                try{
-                    if(counter < balance){
-
-                        const response = await contract.fetchTokenURI(j);
-    
-                        response.map((item)=>{
-                            if(item[0] != ""){
-                                dataProvider(item[0], item[1]);
-                            }
-                        })
-
-                    }
-
-                    else{
-                        setLoadingNFTs(false);
-                        break;
-                    }
-                    
-                }
-                catch(err){
-                    // console.log(err);
-                    j--;
-                    // break;
-                }
-                
-
-            }
-
-
-
-
-        }
-        catch(err){
-            // console.log(err);
-            setLoadingNFTs(false);
-        }
-    }
-
-    async function fetchNFTsQuarterFour(){
-        try{
-        
-            setLoadingNFTs(true);
-            const contract = await burningSetup();
-            const balance = await contract.returnBalance();
-
-
-            for(let j  = 30; j<=40; j++){
-
-                try{
-                    if(counter < balance){
-
-                        const response = await contract.fetchTokenURI(j);
-    
-                        response.map((item)=>{
-                            if(item[0] != ""){
-                                dataProvider(item[0], item[1]);
-                            }
-                        })
-
-                    }
-
-                    else{
-                        setLoadingNFTs(false)
-                        break;
-                    }
-                    
-                }
-                catch(err){
-                    // console.log(err);
-                    j--;
-                    // break;
-                }
-                
-
-            }
-
-
-
-
-        }
-        catch(err){
-            // console.log(err);
-            setLoadingNFTs(false);
-        }
-    }
 
     async function batchBurner(){
         try{
@@ -2105,10 +2011,9 @@ export default function Burner(){
     useEffect(()=>{
 
         if(isConnected)
-        fetchNFTsQuarterOne();
-        fetchNFTsQuarterTwo();
-        fetchNFTsQuarterThree();
-        fetchNFTsQuarterFour();
+        fetchNFTsSecOne();
+        fetchNFTsSecTwo();
+        
     },[isConnected])
 
     return(
