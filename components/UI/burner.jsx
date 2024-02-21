@@ -40,7 +40,7 @@ export default function Burner(){
         return contract;
         }
         catch (err) {
-        console.log(err);
+        // console.log(err);
         }
     }
 
@@ -54,7 +54,7 @@ export default function Burner(){
         return contract;
         }
         catch (err) {
-        console.log(err);
+        // console.log(err);
         }
     }
 
@@ -68,13 +68,13 @@ export default function Burner(){
         return contract;
         }
         catch (err) {
-        console.log(err);
+        // console.log(err);
         }
     }
 
     async function approval(){
         try{
-            console.log(selected.length)
+            // console.log(selected.length)
             if(selected.length >0){
 
                 setLoadingBurning(true);
@@ -83,18 +83,18 @@ export default function Burner(){
                 var approvalStatus = true;
     
                 for(let i = 0; i<selected.length; i++){
-                    console.log(selected[i]);
+                    // console.log(selected[i]);
                     const approved = await contract.getApproved(selected[i]);
-                    console.log(approved);
+                    // console.log(approved);
     
                     if(approved.toLowerCase() == contractAdds.burner.toLowerCase()){
                         approvalStatus = true;
-                        console.log("APPROVED");
+                        // console.log("APPROVED");
                     }
     
                     else{
                         approvalStatus = false;
-                        console.log("NOT APPROVED", contractAdds.burner);
+                        // console.log("NOT APPROVED", contractAdds.burner);
                         const txn = await contract.setApprovalForAll(contractAdds.burner, true);
                         txn.wait().then((res)=>{
                             batchBurner();
@@ -105,7 +105,7 @@ export default function Burner(){
     
                 }
                 if(approvalStatus){
-                    console.log("approved All");
+                    // console.log("approved All");
                     batchBurner();
                 }
             
@@ -114,7 +114,7 @@ export default function Burner(){
         }
         catch(err){
             setLoadingBurning(false);
-            console.log(err);
+            // console.log(err);
         }
     }
 
@@ -123,19 +123,19 @@ export default function Burner(){
             const response = await contract.fetchTokenURI(index);
             const balance = await contract.returnBalance();
 
-            console.log(response);
+            // console.log(response);
 
                 for(let i = 0; i< response.length; i++){
                     
                     try{
                         const uri = response[i][0];
                         const tokenId = Number(response[i][1]);
-                        // console.log(uri);
+                        // // console.log(uri);
                         const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-                        // console.log(metadata)
+                        // // console.log(metadata)
                         const meta = await axios.get(metadata);
 
-                        console.log(meta.data)
+                        // console.log(meta.data)
                         const json = await meta.data
                         const name = json["name"];
                         const reward = await checkTraits(json["attributes"]);
@@ -148,12 +148,12 @@ export default function Burner(){
                             break;
                         }
 
-                        console.log(counter);
+                        // console.log(counter);
                     }
                     catch(err){
-                        console.log(err);
-                        // i--;
-                        break;
+                        // console.log(err);
+                        i--;
+                        // break;
 
                     }
                     
@@ -162,7 +162,7 @@ export default function Burner(){
             
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
             dataProvider(index, contract);
             setLoadingNFTs(false);
         }
@@ -348,7 +348,7 @@ export default function Burner(){
                                 reward = reward + 50;
                                 break;
                             default:
-                                console.log("Not a valid trait");
+                                // console.log("Not a valid trait");
                                 break;
                         }
                         break;  
@@ -454,7 +454,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -509,7 +509,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -666,7 +666,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -766,7 +766,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -833,7 +833,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -849,7 +849,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -902,7 +902,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -1232,7 +1232,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait!");
+                                // console.log("Invalid Trait!");
                                 break;
                         }
                         break;
@@ -1264,7 +1264,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                            console.log("Invalid Input!");
+                            // console.log("Invalid Input!");
                             break;
                         }
                         break;
@@ -1368,7 +1368,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                            console.log("Invalid Input!");
+                            // console.log("Invalid Input!");
                             break;
                             }
                         break;
@@ -1388,7 +1388,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait!");
+                                // console.log("Invalid Trait!");
                                 break;
 
                         }
@@ -1451,7 +1451,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break; 
 
                         }
@@ -1526,7 +1526,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait!");
+                                // console.log("Invalid Trait!");
                                 break;
                         }
                         break;
@@ -1668,7 +1668,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait");
+                                // console.log("Invalid Trait");
                                 break;
                         }
                         break;
@@ -1766,7 +1766,7 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait!");
+                                // console.log("Invalid Trait!");
                                 break;
 
                         }
@@ -1883,14 +1883,14 @@ export default function Burner(){
                                 break;
 
                             default:
-                                console.log("Invalid Trait!");
+                                // console.log("Invalid Trait!");
                                 break;
 
                         }
                         break;
 
                     default:
-                        console.log("HUH?");
+                        // console.log("HUH?");
                         break;
                 }
 
@@ -1902,7 +1902,7 @@ export default function Burner(){
 
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
         }
     }
 
@@ -1917,7 +1917,7 @@ export default function Burner(){
 
             for(let j  = 0; j<40; j++){
                 try{
-                    console.log(counter);
+                    // console.log(counter);
                     if(counter == balance){
                         setLoadingNFTs(false);
                         break;
@@ -1928,9 +1928,9 @@ export default function Burner(){
                     }
                 }
                 catch(err){
-                    console.log(err);
-                    // j--;
-                    break;
+                    // console.log(err);
+                    j--;
+                    // break;
                 }
                 
 
@@ -1939,7 +1939,7 @@ export default function Burner(){
 
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
             setLoadingNFTs(false);
         }
     }
@@ -1963,7 +1963,7 @@ export default function Burner(){
         }
         catch(err){
             setLoadingBurning(false);
-            console.log(err);
+            // console.log(err);
             Swal.fire({
                 icon: "error",
                 title: "Items not Burnt!",
@@ -2009,10 +2009,10 @@ export default function Burner(){
                                         if(!selected.includes(item.tokenId)){
                                             setSelected(oldArray => [...oldArray, item.tokenId]);
                                             var reward = cumulativeReward;
-                                            console.log(reward, item.reward);
+                                            // // console.log(reward, item.reward);
                                             reward = reward+item.reward;
                                             setCumulativeReward(reward);
-                                            console.log(reward);
+                                            // // console.log(reward);
 
                                         }
                                         else{
@@ -2021,7 +2021,7 @@ export default function Burner(){
                                             var reward = cumulativeReward;
                                             reward = reward-item.reward;
                                             setCumulativeReward(reward)
-                                            console.log(reward);
+                                            // // console.log(reward);
 
                                         }
                                     }} >
