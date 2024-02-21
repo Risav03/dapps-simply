@@ -25,8 +25,9 @@ export default function RaffleFetcher({number}){
     const [holding, setHolding] = useState(0);
 
     const [loading, setLoading]  = useState(false);
+    const [loadingRaffle, setLoadingRaffle] = useState(false);
 
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
 
 
 
@@ -102,76 +103,86 @@ export default function RaffleFetcher({number}){
     
     async function fetchRaffle(){
         try{
+            setLoadingRaffle(true);
             console.log("WALLET", address);
             const contract = await setRaffle();
-            console.log("HELLOOOO", number);
+            // console.log("HELLOOOO", number);
             const add = await contract?.raffleContract(number);
-            const tokenId = Number(await contract?.raffleTokenId(number));
 
-            const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
-            const limit = Number(await contract?.ticketLimit(number));
+            console.log(add);
 
+            if(add.toUpperCase != "0X0000000000000000000000000000000000000000"){
+
+                const tokenId = Number(await contract?.raffleTokenId(number));
+                
+                const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
+                const limit = Number(await contract?.ticketLimit(number));
+                
+                
+                if(limit > 0){
+                    setItemExists(true);
+                    if(number > 4){
+                        setPrice(String(await contract?.raffleEntryMaticCost(number)));
+                    }
+                    else{
+                        setPrice(String(await contract?.raffleEntrySimpleCost(number)));
+                    }
+                    setLimit(limit);
+                    setLimitPerWallet(limitperWallet);
+                    setHolding(Number(await contract?.walletHolding(number, address)));
+                    const contract721 = await setERC721(add);
+        
+                    const tokenURI = await contract721.tokenURI(tokenId);
+                    console.log(tokenURI);
+    
+                    if(tokenURI[0] == "h"){
+    
+                        const metadata = tokenURI;
+    
+                        const meta = await fetch(metadata);
+                        const json = await meta.json();
+                        const name = json["name"];
+                        const image = json["image"];
+                        const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+        
+                        console.log(newimage);
             
-            if(limit > 0){
-                if(number > 4){
-                    setPrice(String(await contract?.raffleEntryMaticCost(number)));
-                }
-                else{
-                    setPrice(String(await contract?.raffleEntrySimpleCost(number)));
-                }
-                setLimit(limit);
-                setLimitPerWallet(limitperWallet);
-                setHolding(Number(await contract?.walletHolding(number, address)));
-                setItemExists(true);
-                const contract721 = await setERC721(add);
+                        setWinner(await contract.winningAddress(number));
+                        setTicketsSold(Number(await contract?.ticketsSold(number)));
+                        setEntrants(Number(await contract?.totalEntrants(number)));
+                        setName(name);
+                        setImage(newimage);
     
-                const tokenURI = await contract721.tokenURI(tokenId);
-                console.log(tokenURI);
-
-                if(tokenURI[0] == "h"){
-
-                    const metadata = tokenURI;
-
-                    const meta = await fetch(metadata);
-                    const json = await meta.json();
-                    const name = json["name"];
-                    const image = json["image"];
-                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+                    }
     
-                    console.log(newimage);
+                    else{
+                        const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                        
+                        const meta = await fetch(metadata);
+                        const json = await meta.json();
+                        const name = json["name"];
+                        const image = json["image"];
+                        const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
         
-                    setWinner(await contract.winningAddress(number));
-                    setTicketsSold(Number(await contract?.ticketsSold(number)));
-                    setEntrants(Number(await contract?.totalEntrants(number)));
-                    setName(name);
-                    setImage(newimage);
-
-                }
-
-                else{
-                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
-                    
-                    const meta = await fetch(metadata);
-                    const json = await meta.json();
-                    const name = json["name"];
-                    const image = json["image"];
-                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+                        console.log(newimage);
+            
+                        setWinner(await contract.winningAddress(number));
+                        setTicketsSold(Number(await contract?.ticketsSold(number)));
+                        setEntrants(Number(await contract?.totalEntrants(number)));
+                        setName(name);
+                        setImage(newimage);
+                    }
+                        
     
-                    console.log(newimage);
-        
-                    setWinner(await contract.winningAddress(number));
-                    setTicketsSold(Number(await contract?.ticketsSold(number)));
-                    setEntrants(Number(await contract?.totalEntrants(number)));
-                    setName(name);
-                    setImage(newimage);
                 }
-                    
-
             }
+            setLoadingRaffle(false);
         }
 
         catch(err){
             console.log(err);
+            setLoadingRaffle(false);
+
             setTimeout(await fetchRaffle(), 3000);
         }
     }
@@ -254,6 +265,7 @@ export default function RaffleFetcher({number}){
         <div className="w-[20rem] relative h-fit text-center">
             <div className="bg-blue-500 z-[-1] top-2 left-2 absolute h-full w-full"></div>
             {itemExists ? <div className="bg-yellow-400 w-full p-5 mx-auto">
+                {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#0bb502" ariaLabel="infinity-spin-loading" /></div>}
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-yellow-400 text-black w-fit mx-auto px-4 py-2 my-2">{name}</h2>
                 <div className="grid grid-cols-2 gap-2">
