@@ -181,9 +181,9 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             console.log(err);
-            setLoadingRaffle(false);
+            // setLoadingRaffle(false);
 
-            setTimeout(await fetchRaffle(), 3000);
+            setTimeout(fetchRaffle, 500);
         }
     }
 
@@ -264,8 +264,8 @@ export default function RaffleFetcher({number}){
     return(
         <div className="w-[20rem] relative h-fit text-center">
             <div className="bg-blue-500 z-[-1] top-2 left-2 absolute h-full w-full"></div>
+            {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /></div>}
             {itemExists ? <div className="bg-yellow-400 w-full p-5 mx-auto">
-                {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#0bb502" ariaLabel="infinity-spin-loading" /></div>}
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-yellow-400 text-black w-fit mx-auto px-4 py-2 my-2">{name}</h2>
                 <div className="grid grid-cols-2 gap-2">
