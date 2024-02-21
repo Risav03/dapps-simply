@@ -118,52 +118,26 @@ export default function Burner(){
         }
     }
 
-    async function dataProvider(index, contract){
+    async function dataProvider(uri, tokenId){
         try{
-            const response = await contract.fetchTokenURI(index);
-            const balance = await contract.returnBalance();
+            
+            // console.log(tokenId);
+            const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+            const meta = await axios.get(metadata);
 
-            // console.log(response);
+            const json = await meta.data
+            const name = json["name"];
+            const reward = await checkTraits(json["attributes"]);
+            const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+            
+            setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
 
-                for(let i = 0; i< response.length; i++){
-                    
-                    try{
-                        const uri = response[i][0];
-                        const tokenId = Number(response[i][1]);
-                        // // console.log(uri);
-                        const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-                        // // console.log(metadata)
-                        const meta = await axios.get(metadata);
-
-                        // console.log(meta.data)
-                        const json = await meta.data
-                        const name = json["name"];
-                        const reward = await checkTraits(json["attributes"]);
-                        const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-                        
-                        setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
-
-                        counter++;
-                        if(balance == counter){
-                            break;
-                        }
-
-                        // console.log(counter);
-                    }
-                    catch(err){
-                        // console.log(err);
-                        i--;
-                        // break;
-
-                    }
-                    
-                }
-
+            counter++;
             
         }
         catch(err){
-            // console.log(err);
-            dataProvider(index, contract);
+            console.log(err);
+            dataProvider(uri, tokenId);
             setLoadingNFTs(false);
         }
 
@@ -1907,7 +1881,7 @@ export default function Burner(){
     }
 
 
-    async function fetchNFTs(){
+    async function fetchNFTsFirstHalf(){
         try{
         
             setLoadingNFTs(true);
@@ -1915,17 +1889,25 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 0; j<40; j++){
+            for(let j  = 0; j<20; j++){
+
                 try{
-                    // console.log(counter);
-                    if(counter == balance){
-                        setLoadingNFTs(false);
-                        break;
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
                     }
 
                     else{
-                        await dataProvider(j, contract);
+                        break;
                     }
+                    
                 }
                 catch(err){
                     // console.log(err);
@@ -1935,6 +1917,56 @@ export default function Burner(){
                 
 
             }
+
+
+
+
+        }
+        catch(err){
+            // console.log(err);
+            setLoadingNFTs(false);
+        }
+    }
+
+    async function fetchNFTsSecondHalf(){
+        try{
+        
+            setLoadingNFTs(true);
+            const contract = await burningSetup();
+            const balance = await contract.returnBalance();
+
+
+            for(let j  = 20; j<=40; j++){
+
+                try{
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
+                    }
+
+                    else{
+                        setLoadingNFTs(false);
+                        break;
+                    }
+                    
+                }
+                catch(err){
+                    // console.log(err);
+                    j--;
+                    // break;
+                }
+                
+
+            }
+
+
 
 
         }
@@ -1976,7 +2008,8 @@ export default function Burner(){
     useEffect(()=>{
 
         if(isConnected)
-        fetchNFTs();
+        fetchNFTsFirstHalf();
+        fetchNFTsSecondHalf();
     },[isConnected])
 
     return(
@@ -2028,7 +2061,7 @@ export default function Burner(){
  { loadingNFTs && 
                 <div className="flex flex-col h-[80%] items-center justify-center">
                      <InfinitySpin visible={true} width="200" color="#fc6100" ariaLabel="infinity-spin-loading" />
-                     <h1 className="text-orange-500 animate-pulse font-bold">Fetching NFTs...</h1>
+                     <h1 className="text-orange-500 animate-pulse font-bold">Fetching All NFTs (might take a while for later NFTs)</h1>
                      </div>
                         }
                 </div>
