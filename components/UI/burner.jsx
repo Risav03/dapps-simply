@@ -2133,25 +2133,26 @@ export default function Burner(){
                 {displayNFT.map((item)=>(
                     <div className="relative">
                         <div className={`w-6 h-6 absolute z-10 top-2 right-2 ${selected.includes(item.tokenId) ? "bg-orange-600 shadow-lg shadow-orange-500": "bg-gray-500"} border-white border-[1px] rounded-md`} onClick={()=>{
-                                        if(!selected.includes(item.tokenId)){
-                                            setSelected(oldArray => [...oldArray, item.tokenId]);
-                                            var reward = cumulativeReward;
-                                            // // console.log(reward, item.reward);
-                                            reward = reward+item.reward;
-                                            setCumulativeReward(reward);
-                                            // // console.log(reward);
+                                        
+                        if(!selected.includes(item.tokenId)){
+                            setSelected(oldArray => [...oldArray, item.tokenId]);
+                            var reward = cumulativeReward;
+                            // // console.log(reward, item.reward);
+                            reward = reward+item.reward;
+                            setCumulativeReward(reward);
+                            // // console.log(reward);
 
-                                        }
-                                        else{
-                                            const updatedArray = selected.filter((tokenId) => tokenId !== item.tokenId);
-                                            setSelected(updatedArray);
-                                            var reward = cumulativeReward;
-                                            reward = reward-item.reward;
-                                            setCumulativeReward(reward)
-                                            // // console.log(reward);
+                        }
+                        else{
+                            const updatedArray = selected.filter((tokenId) => tokenId !== item.tokenId);
+                            setSelected(updatedArray);
+                            var reward = cumulativeReward;
+                            reward = reward-item.reward;
+                            setCumulativeReward(reward)
+                            // // console.log(reward);
 
-                                        }
-                                    }} >
+                        }
+                    }} >
                                         
                                     </div>
                         <NFTCards name={item.name} tokenId={item.tokenId} img={item.img} reward={item.reward}/>
