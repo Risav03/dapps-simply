@@ -5,6 +5,7 @@ import erc20abi from "@/utils/abis/erc20abi"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
+import arrowright from "@/assets/next.png"
 // import noraffle from "../../../assets/raffle_comingsoon.png"
 
 import {ethers} from "ethers"
@@ -27,7 +28,7 @@ export default function RaffleFetcher({number}){
 
     const [price, setPrice] = useState("");
 
-    const arrowright = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/arrowright.png"
+
 
     const[ticketModal, setTicketModal] = useState(false);
     
