@@ -1996,12 +1996,7 @@ export default function Burner(){
 
             <div className="w-[95%] sm:h-[58vh] min-[1600px]:h-[63vh] h-[30rem] mx-auto overflow-y-scroll sm:mt-12 mt-10 no-scrollbar bg-white/30 p-5 rounded-2xl">
                 <h1 className="text-xl mb-5 font-bold ml-3">Your NFTs:</h1>
-                { loadingNFTs && 
-                <div className="flex flex-col h-[80%] items-center justify-center">
-                     <InfinitySpin visible={true} width="200" color="#fc6100" ariaLabel="infinity-spin-loading" />
-                     <h1 className="text-orange-500 animate-pulse font-bold">Fetching NFTs...</h1>
-                     </div>
-                        }
+               
                 <div className="flex flex-wrap gap-5 mx-auto justify-center">
                 {displayNFT.map((item)=>(
                     <div className="relative">
@@ -2030,6 +2025,12 @@ export default function Burner(){
                         <NFTCards name={item.name} tokenId={item.tokenId} img={item.img} reward={item.reward}/>
                     </div>
                 ))}
+ { loadingNFTs && 
+                <div className="flex flex-col h-[80%] items-center justify-center">
+                     <InfinitySpin visible={true} width="200" color="#fc6100" ariaLabel="infinity-spin-loading" />
+                     <h1 className="text-orange-500 animate-pulse font-bold">Fetching NFTs...</h1>
+                     </div>
+                        }
                 </div>
                 
             </div>
