@@ -6,7 +6,7 @@ import bg from "@/assets/background.jpg"
 export default function Home() {
   return (
     <main className="text-white text-center px-20 py-36">
-      <Image src={bg} width={1920} height={1080} className="w-screen h-screen absolute top-0 left-0 z-[-2]" />
+      <Image src={bg} width={1920} height={1080} className="w-screen h-screen fixed top-0 left-0 z-[-2]" />
       
       <h1 className="text-7xl font-bold">SIMPLY <span className="bg-gradient-to-b from-green-400 to-green-700 text-transparent bg-clip-text">dApps</span></h1>
 
