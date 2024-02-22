@@ -6,12 +6,14 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
 import arrowright from "@/assets/next.png"
+import axios from "axios"
 // import noraffle from "../../../assets/raffle_comingsoon.png"
 
 import {ethers} from "ethers"
 import { InfinitySpin, MutatingDots } from "react-loader-spinner"
 
 export default function RaffleFetcher({number}){
+
 
     const [name, setName] = useState("");
     const [amount, setAmount] = useState(1);
@@ -33,7 +35,7 @@ export default function RaffleFetcher({number}){
 
     const[ticketModal, setTicketModal] = useState(false);
     
-    const{ address } = useAccount();
+    const{ address, isConnected } = useAccount();
 
     async function setRaffle(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -141,17 +143,30 @@ export default function RaffleFetcher({number}){
     
                         const meta = await fetch(metadata);
                         const json = await meta.json();
+
                         const name = json["name"];
+                        console.log(name);
                         const image = json["image"];
-                        const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+
+                        if(image[0] == "h"){
+                            const newimage = image;
+                            setImage(newimage);
+                        }
+
+                        else{
+                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                            setImage(newimage);
+                        }
+
         
-                        console.log(newimage);
+                        // console.log(newimage);
             
                         setWinner(await contract.winningAddress(number));
                         setTicketsSold(Number(await contract?.ticketsSold(number)));
                         setEntrants(Number(await contract?.totalEntrants(number)));
                         setName(name);
-                        setImage(newimage);
+                        setLoadingRaffle(false);
+
     
                     }
     
@@ -162,28 +177,36 @@ export default function RaffleFetcher({number}){
                         const json = await meta.json();
                         const name = json["name"];
                         const image = json["image"];
-                        const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+
+                        if(image[0] == "h"){
+                            const newimage = image;
+                            setImage(newimage);
+                        }
+
+                        else{
+                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                            setImage(newimage);
+                        }
         
-                        console.log(newimage);
+
             
                         setWinner(await contract.winningAddress(number));
                         setTicketsSold(Number(await contract?.ticketsSold(number)));
                         setEntrants(Number(await contract?.totalEntrants(number)));
                         setName(name);
-                        setImage(newimage);
+                        setLoadingRaffle(false);
+
                     }
                         
     
                 }
             }
-            setLoadingRaffle(false);
         }
 
         catch(err){
             console.log(err);
             // setLoadingRaffle(false);
-
-            setTimeout(fetchRaffle, 500);
+            setTimeout(fetchRaffle, 1000);
         }
     }
 
@@ -259,8 +282,9 @@ export default function RaffleFetcher({number}){
     }
 
     useEffect(()=>{
+        if(isConnected)
         fetchRaffle();
-    },[])
+    },[isConnected])
     return(
         <div className="w-[20rem] relative h-fit text-center">
             <div className="bg-blue-500 z-[-1] top-2 left-2 absolute h-full w-full"></div>
