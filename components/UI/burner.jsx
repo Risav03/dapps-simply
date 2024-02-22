@@ -2307,15 +2307,17 @@ export default function Burner(){
 
     useEffect(()=>{
 
-        if(isConnected)
-        fetchNFTsSecOne();
-        fetchNFTsSecTwo();
-        fetchNFTsSecThree();
-        fetchNFTsSecFour();
-        fetchNFTsSecFive();
-        fetchNFTsSecSix();
-        fetchNFTsSecSeven();
-        fetchNFTsSecEight();
+        if(isConnected){
+
+            fetchNFTsSecOne();
+            fetchNFTsSecTwo();
+            fetchNFTsSecThree();
+            fetchNFTsSecFour();
+            fetchNFTsSecFive();
+            fetchNFTsSecSix();
+            fetchNFTsSecSeven();
+            fetchNFTsSecEight();
+        }
 
 
         
