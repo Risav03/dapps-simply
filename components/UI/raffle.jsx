@@ -9,6 +9,7 @@ export default function Raffle(){
 
     const[type, setType] = useState("Simple");
 
+
     return (
         <div className="p-10">
             <Navbar/>
