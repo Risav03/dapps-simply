@@ -1975,7 +1975,7 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
+            // setLoadingNFTs(false);
             setTimeout(fetchNFTsSecTwo, 500);
         }
     }
@@ -2024,8 +2024,8 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecThree, 500);
         }
     }
 
@@ -2073,8 +2073,8 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecFour, 500);
         }
     }
 
@@ -2122,8 +2122,8 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecFive, 500);
         }
     }
 
@@ -2171,12 +2171,12 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecSix, 500);
         }
     }
 
-    async function fetchNFTsSecFour(){
+    async function fetchNFTsSecSeven(){
         try{
         
             setLoadingNFTs(true);
@@ -2220,12 +2220,12 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecSeven, 500);
         }
     }
 
-    async function fetchNFTsSecFour(){
+    async function fetchNFTsSecEight(){
         try{
         
             setLoadingNFTs(true);
@@ -2269,8 +2269,8 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
-            setTimeout(fetchNFTsSecTwo, 500);
+            // setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecEight, 500);
         }
     }
 
@@ -2312,6 +2312,12 @@ export default function Burner(){
         fetchNFTsSecTwo();
         fetchNFTsSecThree();
         fetchNFTsSecFour();
+        fetchNFTsSecFive();
+        fetchNFTsSecSix();
+        fetchNFTsSecSeven();
+        fetchNFTsSecEight();
+
+
         
     },[isConnected])
 
