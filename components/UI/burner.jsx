@@ -128,7 +128,7 @@ export default function Burner(){
             const json = await meta.data
             const name = json["name"];
             const reward = await checkTraits(json["attributes"]);
-            const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
+            const img = "https://cloudflare-ipfs.com/ipfs/" + json["image"].substr(7);
             
             setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
 
@@ -1889,7 +1889,7 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 0; j<10; j++){
+            for(let j  = 0; j<5; j++){
 
                 try{
                     if(counter < balance){
@@ -1939,7 +1939,7 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 10; j<20; j++){
+            for(let j  = 5; j<10; j++){
 
                 try{
                     if(counter < balance){
@@ -1988,7 +1988,7 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 20; j<30; j++){
+            for(let j  = 10; j<15; j++){
 
                 try{
                     if(counter < balance){
@@ -2037,7 +2037,203 @@ export default function Burner(){
             const balance = await contract.returnBalance();
 
 
-            for(let j  = 30; j<=40; j++){
+            for(let j  = 15; j<20; j++){
+
+                try{
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
+                    }
+
+                    else{
+                        setLoadingNFTs(false);
+                        break;
+                    }
+                    
+                }
+                catch(err){
+                    // console.log(err);
+                    j--;
+                    // break;
+                }
+                
+
+            }
+
+
+
+
+        }
+        catch(err){
+            // console.log(err);
+            setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecTwo, 500);
+        }
+    }
+
+    async function fetchNFTsSecFive(){
+        try{
+        
+            setLoadingNFTs(true);
+            const contract = await burningSetup();
+            const balance = await contract.returnBalance();
+
+
+            for(let j  = 20; j<25; j++){
+
+                try{
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
+                    }
+
+                    else{
+                        setLoadingNFTs(false);
+                        break;
+                    }
+                    
+                }
+                catch(err){
+                    // console.log(err);
+                    j--;
+                    // break;
+                }
+                
+
+            }
+
+
+
+
+        }
+        catch(err){
+            // console.log(err);
+            setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecTwo, 500);
+        }
+    }
+
+    async function fetchNFTsSecSix(){
+        try{
+        
+            setLoadingNFTs(true);
+            const contract = await burningSetup();
+            const balance = await contract.returnBalance();
+
+
+            for(let j  = 25; j<30; j++){
+
+                try{
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
+                    }
+
+                    else{
+                        setLoadingNFTs(false);
+                        break;
+                    }
+                    
+                }
+                catch(err){
+                    // console.log(err);
+                    j--;
+                    // break;
+                }
+                
+
+            }
+
+
+
+
+        }
+        catch(err){
+            // console.log(err);
+            setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecTwo, 500);
+        }
+    }
+
+    async function fetchNFTsSecFour(){
+        try{
+        
+            setLoadingNFTs(true);
+            const contract = await burningSetup();
+            const balance = await contract.returnBalance();
+
+
+            for(let j  = 30; j<35; j++){
+
+                try{
+                    if(counter < balance){
+
+                        const response = await contract.fetchTokenURI(j);
+    
+                        response.map((item)=>{
+                            if(item[0] != ""){
+                                dataProvider(item[0], item[1]);
+                            }
+                        })
+
+                    }
+
+                    else{
+                        setLoadingNFTs(false);
+                        break;
+                    }
+                    
+                }
+                catch(err){
+                    // console.log(err);
+                    j--;
+                    // break;
+                }
+                
+
+            }
+
+
+
+
+        }
+        catch(err){
+            // console.log(err);
+            setLoadingNFTs(false);
+            setTimeout(fetchNFTsSecTwo, 500);
+        }
+    }
+
+    async function fetchNFTsSecFour(){
+        try{
+        
+            setLoadingNFTs(true);
+            const contract = await burningSetup();
+            const balance = await contract.returnBalance();
+
+
+            for(let j  = 35; j<=40; j++){
 
                 try{
                     if(counter < balance){
