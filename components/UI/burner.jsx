@@ -138,7 +138,7 @@ export default function Burner(){
         catch(err){
             console.log(err);
             dataProvider(uri, tokenId);
-            setLoadingNFTs(false);
+            // setLoadingNFTs(false);
         }
 
 
@@ -1925,7 +1925,7 @@ export default function Burner(){
         }
         catch(err){
             // console.log(err);
-            setLoadingNFTs(false);
+            // setLoadingNFTs(false);
             setTimeout(fetchNFTsSecOne, 500);
 
         }
