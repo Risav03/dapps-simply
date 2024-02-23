@@ -105,16 +105,15 @@ export default function RaffleFetcher({number}){
     
     async function fetchRaffle(){
         try{
-            setLoadingRaffle(true);
             console.log("WALLET", address);
             const contract = await setRaffle();
             // console.log("HELLOOOO", number);
             const add = await contract?.raffleContract(number);
-
-            console.log(add);
-
-            if(add.toUpperCase != "0X0000000000000000000000000000000000000000"){
-
+            
+            
+            if(add.toLowerCase() != "0x0000000000000000000000000000000000000000"){
+                
+                setLoadingRaffle(true);
                 const tokenId = Number(await contract?.raffleTokenId(number));
                 
                 const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
@@ -289,7 +288,7 @@ export default function RaffleFetcher({number}){
         <div className="w-[20rem] relative h-fit text-center">
             <div className="bg-blue-500 z-[-1] top-2 left-2 absolute h-full w-full"></div>
             {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /><h1>Fetching data...</h1></div>}
-            {itemExists ? <div className="bg-yellow-400 w-full p-5 mx-auto">
+            {itemExists ? <div className="bg-yellow-400 h-[40rem] w-full p-5 mx-auto">
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-yellow-400 text-black w-fit mx-auto px-4 py-2 my-2">{name}</h2>
                 <div className="grid grid-cols-2 gap-2">
@@ -298,7 +297,7 @@ export default function RaffleFetcher({number}){
                     <h2 className="bg-purple-400 col-span-2 text-white border-2 border-black py-2 w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
                 </div>
                 <h2 className="text-black bg-white w-fit rounded-t-none truncate py-2 px-4 mx-auto text-[1.2rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} {number>4 ? "$MATIC": "$SIMPLE"}</h2>
-                {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2>Winner: {winner}</h2>:
+                {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2 className="truncate font-bold mt-2">Winner: {winner}</h2>:
                 <button onClick={()=>{
                     setTicketModal(true);
                 }} className="text-3xl bg-green-500 hover:bg-green-600 text-white px-5 py-3 mt-4">Buy Tickets</button>
