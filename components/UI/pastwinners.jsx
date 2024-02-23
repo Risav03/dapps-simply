@@ -91,7 +91,7 @@ export default function PastWinners({number}){
     return(
         <>
             <div className="bg-blue-400 w-[20rem] h-[20rem] p-3 text-center grid grid-cols-1 text-white border-2 border-black">
-            <div className="bg-white mx-auto w-[16rem] h-[16rem] row-span-3 border-2 border-black overflow-hidden">
+            <div className="bg-white mx-auto w-[13rem] h-[13rem] row-span-3 border-2 border-black overflow-hidden">
                 {nftImage != "" && <Image width={1920} height={1080} className="mx-auto h-[16rem] col-span-2 bg-white w-[16rem] border-2 object-cover" src={nftImage}/>}
             </div>
                 
