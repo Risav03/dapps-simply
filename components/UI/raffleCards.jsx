@@ -20,7 +20,7 @@ export default function RaffleFetcher({number}){
     const [image, setImage] = useState("");
     const [ticketsSold, setTicketsSold] = useState(0);
     const [entrants, setEntrants] = useState(0);
-    const [winner, setWinner] = useState("");
+
     const [itemExists, setItemExists] = useState(false);
     const [limitPerWallet, setLimitPerWallet] = useState(0);
     const [limit, setLimit] = useState(0);
@@ -160,7 +160,7 @@ export default function RaffleFetcher({number}){
         
                         // console.log(newimage);
             
-                        setWinner(await contract.winningAddress(number));
+
                         setTicketsSold(Number(await contract?.ticketsSold(number)));
                         setEntrants(Number(await contract?.totalEntrants(number)));
                         setName(name);
@@ -189,7 +189,7 @@ export default function RaffleFetcher({number}){
         
 
             
-                        setWinner(await contract.winningAddress(number));
+
                         setTicketsSold(Number(await contract?.ticketsSold(number)));
                         setEntrants(Number(await contract?.totalEntrants(number)));
                         setName(name);
@@ -297,11 +297,11 @@ export default function RaffleFetcher({number}){
                     <h2 className="bg-purple-400 col-span-2 text-white border-2 border-black py-2 w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
                 </div>
                 <h2 className="text-black bg-white w-fit rounded-t-none truncate py-2 px-4 mx-auto text-[1.2rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} {number>4 ? "$MATIC": "$SIMPLE"}</h2>
-                {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2 className="truncate font-bold mt-2">Winner: {winner}</h2>:
+
                 <button onClick={()=>{
                     setTicketModal(true);
                 }} className="text-3xl bg-green-500 hover:bg-green-600 text-white px-5 py-3 mt-4">Buy Tickets</button>
-                }
+                
                 
             </div> : 
             <div className="bg-yellow-400 w-full p-5 mx-auto flex items-center justify-center">
