@@ -107,7 +107,7 @@ export default function RaffleFetcher({number}){
         try{
             console.log("WALLET", address);
             const contract = await setRaffle();
-            // console.log("HELLOOOO", number);
+
             const add = await contract?.raffleContract(number);
             
             
@@ -170,8 +170,8 @@ export default function RaffleFetcher({number}){
                     }
     
                     else{
-                        const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
-                        
+                        const metadata = `https://cloudflare-ipfs.com/ipfs/${tokenURI.substr(7)}`;
+                        console.log(metadata);
                         const meta = await fetch(metadata);
                         const json = await meta.json();
                         const name = json["name"];
