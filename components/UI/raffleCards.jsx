@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
 import arrowright from "@/assets/next.png"
-// import axios from "axios"
+import axios from "axios"
 // import noraffle from "../../../assets/raffle_comingsoon.png"
 
 import {ethers} from "ethers"
