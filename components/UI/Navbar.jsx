@@ -5,18 +5,18 @@ import {ethers} from "ethers"
 import {useState, useEffect} from "react";
 import Swal from 'sweetalert2';
 import {useAccount} from "wagmi";
-
+import { usePathname } from 'next/navigation'
 import token from "@/assets/coin.png"
 
 import Image from "next/image"
-
+import Link from "next/link"
 import tokenBox from "@/assets/tokenBox.png"
 
 export default function Navbar(){
 
     const [balance, setBalance] = useState(0);
     const {address, isConnected} = useAccount();
-
+    const pathname = usePathname();
     async function setTokenContract() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -64,7 +64,17 @@ export default function Navbar(){
     },[isConnected])
 
     return(
-        <div className="flex flex-row sm:items-end sm:justify-end sm:mt-2 mt-5 mb-5 items-center justify-center relative">
+        <div className="flex sm:flex-row flex-col gap-10 sm:items-center sm:justify-end sm:mt-2 mt-5 mb-5 items-center justify-center relative">
+          <div className="px-10 grid grid-flow-col grid-cols-2 gap-10">
+            <Link
+            href = "/raffle" className={`${pathname == "/raffle" && "text-green-500 bg-gray-400/50"} px-8 py-3`}
+            >Raffle</Link>
+
+            <Link
+            href = "/burner" className={`${pathname == "/burner" && "text-orange-500 bg-gray-400/50"} px-8 py-3`}
+            >Burner</Link>
+          </div>
+
             <div className="flex items-center w-[14rem] text-center  justify-center -translate-y-3 -translate-x-2">
                 <Image width={1920} height={1080} src={tokenBox} className="absolute w-[14rem] grayscale brightness-150"/>
                 <h2 className="translate-y-2 text-center text-xl flex items-center font-bold text-black">{balance} <span ><Image src={token} width={1920} height={1080} className="w-[2.5rem] translate-x-4 -rotate-12" /></span></h2>
