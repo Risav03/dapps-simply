@@ -285,7 +285,7 @@ export default function RaffleFetcher({number}){
     },[isConnected])
     return(
         <div className="w-[20rem] relative h-fit text-center">
-            <div className="bg-blue-500 z-[-1] top-2 left-2 absolute h-full w-full"></div>
+            <div className="bg-blue-400 z-[-1] top-2 left-2 absolute h-full w-full"></div>
             {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /><h1>Fetching data...</h1></div>}
             {itemExists ? <div className="bg-yellow-400 w-full p-5 mx-auto">
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
@@ -299,7 +299,7 @@ export default function RaffleFetcher({number}){
 
                 <button onClick={()=>{
                     setTicketModal(true);
-                }} className="text-3xl bg-green-500 hover:bg-green-600 text-white px-5 py-3 mt-4">Buy Tickets</button>
+                }} className="text-3xl bg-orange-500 border-x-0 hover:shadow-inner hover:shadow-black/30 hover:border-x-4 border-x-white duration-300 hover:bg-orange-600 text-white px-5 py-3 mt-4">Buy Tickets</button>
                 
                 
             </div> : 
