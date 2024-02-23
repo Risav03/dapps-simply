@@ -66,13 +66,15 @@ export default function Navbar(){
     return(
         <div className="flex sm:flex-row flex-col gap-10 sm:items-center sm:justify-end sm:mt-2 mt-5 mb-5 items-center justify-center relative">
           <div className="px-10 grid grid-flow-col grid-cols-2 gap-10">
-            <Link
-            href = "/raffle" className={`${pathname == "/raffle" && "text-green-500 bg-gray-400/50"} px-8 py-3`}
-            >Raffle</Link>
-
+            
             <Link
             href = "/burner" className={`${pathname == "/burner" && "text-orange-500 bg-gray-400/50"} px-8 py-3`}
             >Burner</Link>
+            
+            <Link
+            href = "/raffle" className={`${pathname == "/raffle" && "text-blue-500 bg-gray-400/50"} px-8 py-3`}
+            >Raffle</Link>
+
           </div>
 
             <div className="flex items-center w-[14rem] text-center  justify-center -translate-y-3 -translate-x-2">

@@ -299,7 +299,7 @@ export default function RaffleFetcher({number}){
 
                 <button onClick={()=>{
                     setTicketModal(true);
-                }} className="text-3xl bg-orange-500 border-x-0 hover:shadow-inner hover:shadow-black/30 hover:border-x-4 border-x-white duration-300 hover:bg-orange-600 text-white px-5 py-3 mt-4">Buy Tickets</button>
+                }} className="text-3xl bg-gradient-to-b from-blue-500 to-blue-400 border-x-0 hover:shadow-inner hover:shadow-black/40 hover:border-x-8 border-x-white duration-300 rounded-xl text-white px-5 py-3 mt-4">Buy Tickets</button>
                 
                 
             </div> : 
