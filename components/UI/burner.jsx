@@ -129,6 +129,9 @@ export default function Burner(){
             const name = json["name"];
             const reward = await checkTraits(json["attributes"]);
             const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
+
+            const res = await axios.get(img);
+            console.log("Image res", res);
             
             setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
 
@@ -1911,7 +1914,7 @@ export default function Burner(){
                     
                 }
                 catch(err){
-                    // console.log(err);
+                    console.log(err);
                     j--;
                     // break;
                 }
@@ -1961,7 +1964,7 @@ export default function Burner(){
                     
                 }
                 catch(err){
-                    // console.log(err);
+                    console.log(err);
                     j--;
                     // break;
                 }
@@ -2010,7 +2013,7 @@ export default function Burner(){
                     
                 }
                 catch(err){
-                    // console.log(err);
+                    console.log(err);
                     j--;
                     // break;
                 }
@@ -2059,7 +2062,7 @@ export default function Burner(){
                     
                 }
                 catch(err){
-                    // console.log(err);
+                    console.log(err);
                     j--;
                     // break;
                 }
