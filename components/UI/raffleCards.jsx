@@ -339,6 +339,8 @@ export default function RaffleFetcher({number}){
                                 <Image unoptimized width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
                             </button>
                         </div>
+
+                        <h1 className="font-bold text-black">Spending: {(amount * Number(ethers.utils.formatEther(String(price)))).toFixed(2)} {number < 5 ? "$SIMPLE" : "MATIC"}</h1>
                         
                         {!loading ? <button onClick={approve} className={` group py-4 px-8 text-white border-2 border-black text-3xl bg-blue-400`}>
                         Buy
