@@ -37,6 +37,9 @@ export default function RaffleFetcher({number}){
     
     const{ address, isConnected } = useAccount();
 
+    const gateways = ["ipfs.io", "cf-ipfs.com", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
+    var gatewayNum = 0;
+
     async function setRaffle(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -153,7 +156,9 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                            const newimage = `https://`+gateways[gatewayNum]+`/ipfs/${image.substr(7)}`;
+                            const img = await axios.get(newimage);
+                            console.log(img);
                             setImage(newimage);
                         }
 
@@ -174,6 +179,7 @@ export default function RaffleFetcher({number}){
                         const meta = await fetch(metadata);
                         const json = await meta.json();
                         const name = json["name"];
+                        
                         const image = json["image"];
 
                         if(image[0] == "h"){
@@ -182,7 +188,12 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                            const newimage = `https://`+gateways[gatewayNum]+`/ipfs/${image.substr(7)}`
+                            const img = await axios.get(newimage).then((res)=>{
+                                console.log(gateways[gatewayNum]);
+                            });
+                            
+                            console.log(img);
                             setImage(newimage);
                         }
         
@@ -203,7 +214,7 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             console.log(err);
-            // setLoadingRaffle(false);
+            gatewayNum++;
             setTimeout(fetchRaffle, 1000);
         }
     }
