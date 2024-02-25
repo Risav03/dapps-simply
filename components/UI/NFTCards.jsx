@@ -108,7 +108,7 @@ export default function NFTCards({name, img, tokenId, reward}){
             <h1 className="mb-4 font-bold text-xl">{name}</h1>
 
             <div className="w-52 h-52 border-white border-2 rounded-2xl">
-                <Image alt={name} src={img} width={1920} height={1080} className="rounded-2xl" />
+                <Image unoptimized alt={name} src={img} width={1920} height={1080} className="rounded-2xl" />
             </div>
             <h2 className="font-bold flex items-center justify-center mt-2">Reward: <span className="text-green-400 text-xl font-bold">&nbsp;&nbsp;{reward}</span> <span ><Image src={token} width={1920} height={1080} className="w-[2rem] translate-x-1 -rotate-12" /></span> </h2>
             <button disabled={loading} onClick={()=>{approval(tokenId)}} className={`mt-5 text-lg ${loading && "animate-pulse"} bg-gradient-to-br rounded-2xl border-2 hover:bg-gradient-to-b duration-300 border-white from-red-500 to-orange-400 font-bold px-5 py-3`}>{loading ? "Burning" : "Burn"}</button>

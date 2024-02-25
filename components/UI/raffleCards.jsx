@@ -304,7 +304,7 @@ export default function RaffleFetcher({number}){
             <div className="bg-blue-400 z-[-1] top-2 left-2 absolute h-full w-full"></div>
             {loadingRaffle &&<div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /><h1>Fetching data...</h1></div>}
             {itemExists ? <div className="bg-yellow-400 w-full p-5 mx-auto">
-                <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
+                <Image unoptimized width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-yellow-400 h-[5rem] text-black w-fit mx-auto px-4 py-2 my-2">{name}</h2>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -332,11 +332,11 @@ export default function RaffleFetcher({number}){
                         </input> */}
                         <div className="grid grid-flow-col grid-cols-3 items-center gap-5">
                             <button onClick={()=>{changeAmount(-1)}} className="p-3">
-                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem] rotate-180"/>
+                                <Image unoptimized width={1920} height={1080} src={arrowright} className="w-[3rem] rotate-180"/>
                             </button>
                             <div className="text-[2.5rem] text-center text-black">{amount}</div>
                             <button onClick={()=>{changeAmount(1)}} className="p-3">
-                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
+                                <Image unoptimized width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
                             </button>
                         </div>
                         
