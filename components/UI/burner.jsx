@@ -144,7 +144,12 @@ export default function Burner(){
         catch(err){
             console.log(err);
             dataProvider(uri, tokenId);
-            gatewayNum++;
+            if(gatewayNum < 4){
+                gatewayNum++;
+            }
+            else{
+                gatewayNum = 0;
+            }
         }
 
 

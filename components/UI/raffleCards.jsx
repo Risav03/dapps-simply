@@ -189,11 +189,11 @@ export default function RaffleFetcher({number}){
 
                         else{
                             const newimage = `https://`+gateways[gatewayNum]+`/ipfs/${image.substr(7)}`
-                            const img = await axios.get(newimage).then((res)=>{
-                                console.log(gateways[gatewayNum]);
+                            await axios.get(newimage).then((res)=>{
+                                console.log(res, gateways[gatewayNum]);
                             });
                             
-                            console.log(img);
+                            // console.log(img);
                             setImage(newimage);
                         }
         
@@ -214,7 +214,12 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             console.log(err);
-            gatewayNum++;
+            if(gatewayNum < 4){
+                gatewayNum++;
+            }
+            else{
+                gatewayNum = 0;
+            }
             setTimeout(fetchRaffle, 1000);
         }
     }
