@@ -68,11 +68,11 @@ export default function Navbar(){
           <div className="px-10 grid grid-flow-col grid-cols-2 gap-10">
             
             <Link
-            href = "/burner" className={`${pathname == "/burner" && " rounded-xl font-bold text-orange-400 shadow-orange-500/50 shadow-xl bg-gray-400/50"} px-8 py-3`}
+            href = "/burner" className={`${pathname == "/burner" && " rounded-xl w-[5rem] font-bold text-orange-400 shadow-orange-500/50 shadow-xl bg-gray-400/50"} px-8 py-3`}
             >Burner</Link>
             
             <Link
-            href = "/raffle" className={`${pathname == "/raffle" && "text-blue-400 font-bold rounded-xl shadow-blue-500/50 shadow-xl bg-gray-400/50"} px-8 py-3`}
+            href = "/raffle" className={`${pathname == "/raffle" && "text-blue-400 w-[5rem] font-bold rounded-xl shadow-blue-500/50 shadow-xl bg-gray-400/50"} px-8 py-3`}
             >Raffle</Link>
 
           </div>

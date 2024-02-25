@@ -153,7 +153,7 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
+                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
                             setImage(newimage);
                         }
 
@@ -182,7 +182,7 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
+                            const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
                             setImage(newimage);
                         }
         
