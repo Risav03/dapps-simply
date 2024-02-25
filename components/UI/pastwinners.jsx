@@ -65,7 +65,7 @@ export default function PastWinners({number}){
                 const json = await meta.json();
                 const name = json["name"];
                 const image = json["image"];
-                const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
+                const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
     
                 console.log(newimage);
         
