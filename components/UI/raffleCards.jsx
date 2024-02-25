@@ -174,7 +174,7 @@ export default function RaffleFetcher({number}){
                     }
     
                     else{
-                        const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                        const metadata = `https://`+gateways[gatewayNum]+`/ipfs/${tokenURI.substr(7)}`;
                         console.log(metadata);
                         const meta = await fetch(metadata);
                         const json = await meta.json();
@@ -191,7 +191,7 @@ export default function RaffleFetcher({number}){
                             const newimage = `https://`+gateways[gatewayNum]+`/ipfs/${image.substr(7)}`
                             await axios.get(newimage).then((res)=>{
                                 console.log(res, gateways[gatewayNum]);
-                            });
+                            }).catch((err)=>{console.log("Couldnt fetch image",gateways[gatewayNum], err)});
                             
                             // console.log(img);
                             setImage(newimage);
@@ -213,7 +213,7 @@ export default function RaffleFetcher({number}){
         }
 
         catch(err){
-            console.log(err);
+            // console.log(err);
             if(gatewayNum < 4){
                 gatewayNum++;
             }
@@ -256,7 +256,7 @@ export default function RaffleFetcher({number}){
             }
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
             setLoading(false);
         }
     }

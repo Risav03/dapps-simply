@@ -125,7 +125,7 @@ export default function Burner(){
         try{
             
             // console.log(tokenId);
-            const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+            const metadata = "https://"+gateways[gatewayNum]+"/ipfs/" + uri.substr(7);
             const meta = await axios.get(metadata);
 
             const json = await meta.data
