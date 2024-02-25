@@ -169,7 +169,7 @@ export default function RaffleFetcher({number}){
                     }
     
                     else{
-                        const metadata = `https://cloudflare-ipfs.com/ipfs/${tokenURI.substr(7)}`;
+                        const metadata = `https://cf-ipfs.com/ipfs/${tokenURI.substr(7)}`;
                         console.log(metadata);
                         const meta = await fetch(metadata);
                         const json = await meta.json();
