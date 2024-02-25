@@ -153,7 +153,7 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://gateway.pinata.cloud/ipfs/${image.substr(7)}`
+                            const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
                             setImage(newimage);
                         }
 
@@ -169,7 +169,7 @@ export default function RaffleFetcher({number}){
                     }
     
                     else{
-                        const metadata = `https://cf-ipfs.com/ipfs/${tokenURI.substr(7)}`;
+                        const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
                         console.log(metadata);
                         const meta = await fetch(metadata);
                         const json = await meta.json();
@@ -182,7 +182,7 @@ export default function RaffleFetcher({number}){
                         }
 
                         else{
-                            const newimage = `https://gateway.pinata.cloud/ipfs/${image.substr(7)}`
+                            const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
                             setImage(newimage);
                         }
         

@@ -128,7 +128,7 @@ export default function Burner(){
             const json = await meta.data
             const name = json["name"];
             const reward = await checkTraits(json["attributes"]);
-            const img = "https://gateway.pinata.cloud/ipfs/" + json["image"].substr(7);
+            const img = "https://cloudflare-ipfs.com/ipfs/" + json["image"].substr(7);
             
             setDisplayNFT(oldArray => [...oldArray, {name, reward, img, tokenId}]);
 
