@@ -28,6 +28,9 @@ export default function Burner(){
     const [loadingBurning, setLoadingBurning] = useState(false);
 
 
+    const gateways = ["ipfs.io", "cf-ipfs.com", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
+    var gatewayNum = 0;
+
     var counter = 0;
 
     async function burningSetup(){
@@ -128,7 +131,7 @@ export default function Burner(){
             const json = await meta.data
             const name = json["name"];
             const reward = await checkTraits(json["attributes"]);
-            const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
+            const img = "https://"+gateways[gatewayNum]+"/ipfs/" + json["image"].substr(7);
 
             const res = await axios.get(img);
             console.log("Image res", res);
@@ -141,7 +144,7 @@ export default function Burner(){
         catch(err){
             console.log(err);
             dataProvider(uri, tokenId);
-            // setLoadingNFTs(false);
+            gatewayNum++;
         }
 
 
