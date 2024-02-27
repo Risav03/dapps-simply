@@ -37,7 +37,7 @@ export default function RaffleFetcher({number}){
     
     const{ address, isConnected } = useAccount();
 
-    const gateways = ["ipfs.io", "cf-ipfs.com", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
+    const gateways = ["ipfs.io", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
     var gatewayNum = 0;
 
     async function setRaffle(){
@@ -214,7 +214,7 @@ export default function RaffleFetcher({number}){
 
         catch(err){
             // console.log(err);
-            if(gatewayNum < 4){
+            if(gatewayNum < 3){
                 gatewayNum++;
             }
             else{

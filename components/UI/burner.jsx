@@ -28,7 +28,7 @@ export default function Burner(){
     const [loadingBurning, setLoadingBurning] = useState(false);
 
 
-    const gateways = ["ipfs.io", "cf-ipfs.com", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
+    const gateways = ["ipfs.io", "cloudflare-ipfs.io", "gateway.pinata.cloud", "gateway.ipfs.io"];
     var gatewayNum = 0;
 
     var counter = 0;
@@ -144,7 +144,7 @@ export default function Burner(){
         catch(err){
             console.log(err);
             dataProvider(uri, tokenId);
-            if(gatewayNum < 4){
+            if(gatewayNum < 3){
                 gatewayNum++;
             }
             else{
