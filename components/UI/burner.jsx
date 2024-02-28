@@ -2335,7 +2335,7 @@ export default function Burner(){
     },[isConnected])
 
     return(
-        <div className="sm:p-12 p-4 overflow-hidden">
+        <div className="sm:p-10 p-4 overflow-hidden">
             
             <Navbar/>
             <h1 className="text-6xl mt-5 font-bold">SIMPLY <span className="bg-gradient-to-b from-orange-600 to-orange-400 text-transparent bg-clip-text">Burner</span></h1>
